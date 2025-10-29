@@ -1,0 +1,26 @@
+.cart { padding: 24px 0; }
+.cart__items { display: grid; gap: 12px; }
+.cart-item { display: grid; grid-template-columns: 80px 1fr auto; gap: 12px; align-items: center; background: var(--panel); border: 1px solid rgba(255,255,255,0.06); border-radius: 12px; padding: 10px; }
+.cart-item__img { width: 80px; height: 80px; border-radius: 10px; overflow: hidden; background: #0c0e12; }
+.cart-item__img img { width: 100%; height: 100%; object-fit: cover; }
+.cart-item__info h3 { margin: 0 0 4px; font-size: 16px; }
+.qty { display: inline-flex; align-items: center; gap: 8px; }
+.qty button { width: 28px; height: 28px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1); background: #0e1117; color: var(--text); cursor: pointer; }
+.qty input { width: 44px; text-align: center; background: #0e1117; border: 1px solid rgba(255,255,255,0.1); color: var(--text); border-radius: 8px; padding: 6px; }
+.cart-item__price { font-weight: 700; }
+.cart-item__remove { color: #ff6b6b; background: transparent; border: none; cursor: pointer; }
+
+.cart__summary { margin-top: 24px; display: grid; grid-template-columns: 1fr auto; align-items: start; gap: 20px; }
+.cart__totals { background: var(--panel); border: 1px solid rgba(255,255,255,0.06); border-radius: 12px; padding: 14px; display: grid; gap: 10px; }
+.cart__totals > div { display: flex; justify-content: space-between; padding: 10px 0; }
+#coupon { width: 200px; background: #0e1117; border: 1px solid rgba(255,255,255,0.12); color: var(--text); border-radius: 10px; padding: 10px 12px; }
+.cart__total { border-top: 1px solid rgba(255,255,255,0.08); margin-top: 6px; padding-top: 12px; }
+.cart__total span:last-child { font-size: 20px; font-weight: 800; color: var(--accent); }
+.cart__actions { display: grid; gap: 12px; align-content: start; justify-items: end; }
+
+@media (max-width: 720px){
+  .cart__summary { grid-template-columns: 1fr; }
+  .cart__actions { justify-items: stretch; }
+  .cart__actions .cta, .cart__actions .btn { width: 100%; }
+}
+.cart__actions { display: grid; gap: 12px; align-content: start; justify-items: end; }

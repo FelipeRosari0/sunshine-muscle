@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Login — Sunshine Muscle</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="login.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="container topbar__content">
+        <a class="search-btn" href="index.html" aria-label="Voltar">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M10 19l-7-7 7-7v4h8v6h-8v4z"/></svg>
+        </a>
+        <a class="brand" href="index.html">
+          <img src="assets/logo.svg" class="brand__logo" alt="Logo Sunshine Muscle" />
+        </a>
+      </div>
+    </header>
+
+    <main class="container">
+      <section class="login">
+        <h1 class="section-title">Entrar</h1>
+        <form id="loginForm" class="login__form" autocomplete="on">
+          <label class="field">Nome
+            <input type="text" name="nome" required />
+          </label>
+          <label class="field">Email
+            <input type="email" name="email" required />
+          </label>
+          <label class="field">Senha
+            <input type="password" name="senha" required />
+          </label>
+          <button type="submit" class="btn btn-primary">Entrar</button>
+        </form>
+        <p class="muted">Ao entrar, você poderá ver seus pedidos no perfil.</p>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container footer__content">
+        <p>© Sunshine Muscle — 2025</p>
+        <p class="muted">Treine forte. Treine com estilo.</p>
+      </div>
+    </footer>
+
+    <script src="loader.js"></script>
+    <script src="auth.js"></script>
+    <script src="login.js"></script>
+  </body>
+  </html>

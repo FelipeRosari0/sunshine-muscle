@@ -1,0 +1,15 @@
+buildscript {
+  repositories {
+    google()
+    mavenCentral()
+  }
+  dependencies {
+    // AGP compatível com versões mais antigas do Android Studio
+    classpath 'com.android.tools.build:gradle:8.2.2'
+    classpath 'org.jetbrains.kotlin:kotlin-gradle-plugin:1.9.24'
+  }
+}
+
+task clean(type: Delete) {
+  delete rootProject.buildDir
+}

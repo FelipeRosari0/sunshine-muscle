@@ -1,0 +1,18 @@
+#!/usr/bin/env sh
+
+##############################################################################
+# Gradle start up script for UN*X
+##############################################################################
+
+# Locate JAVA and set up JAVA_HOME if needed
+if [ -z "$JAVA_HOME" ]; then
+  JAVA_HOME=$(dirname $(dirname $(readlink -f $(which java))))
+fi
+
+APP_HOME=$(dirname "$0")
+CLASSPATH=$APP_HOME/gradle/wrapper/gradle-wrapper.jar
+
+JAVA_OPTS=${JAVA_OPTS:-}
+
+exec "$JAVA_HOME/bin/java" $JAVA_OPTS -Dfile.encoding=UTF-8 \
+  -classpath "$CLASSPATH" org.gradle.wrapper.GradleWrapperMain "$@"

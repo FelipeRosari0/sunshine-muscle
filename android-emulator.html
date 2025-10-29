@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Android App Emulator - Sunshine Muscle</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            background: #1a1a1a;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        
+        .phone-frame {
+            width: 375px;
+            height: 667px;
+            background: #333;
+            border-radius: 25px;
+            padding: 20px;
+            box-shadow: 0 0 30px rgba(0,0,0,0.5);
+            position: relative;
+        }
+        
+        .screen {
+            width: 100%;
+            height: 100%;
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .status-bar {
+            height: 25px;
+            background: #000;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 10px;
+            font-size: 12px;
+        }
+        
+        .webview {
+            width: 100%;
+            height: calc(100% - 25px);
+            border: none;
+        }
+        
+        .controls {
+            position: absolute;
+            top: -60px;
+            left: 0;
+            right: 0;
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+        }
+        
+        .btn {
+            background: #007AFF;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 12px;
+        }
+        
+        .btn:hover {
+            background: #0056CC;
+        }
+        
+        .btn.offline {
+            background: #FF9500;
+        }
+        
+        .btn.offline:hover {
+            background: #CC7700;
+        }
+    </style>
+</head>
+<body>
+    <div class="phone-frame">
+        <div class="controls">
+            <button class="btn" onclick="loadServer()">Servidor Local</button>
+            <button class="btn offline" onclick="loadOffline()">Modo Offline</button>
+            <button class="btn" onclick="goBack()">← Voltar</button>
+        </div>
+        
+        <div class="screen">
+            <div class="status-bar">
+                <span>9:41</span>
+                <span>Sunshine Muscle</span>
+                <span>🔋 100%</span>
+            </div>
+            <iframe id="webview" class="webview" src="index.html"></iframe>
+        </div>
+    </div>
+
+    <script>
+        const webview = document.getElementById('webview');
+        
+        function loadServer() {
+            // Tenta carregar do servidor local (porta 8000)
+            webview.src = 'http://localhost:8000/index.html';
+        }
+        
+        function loadOffline() {
+            // Carrega diretamente os arquivos locais
+            webview.src = 'index.html';
+        }
+        
+        function goBack() {
+            try {
+                webview.contentWindow.history.back();
+            } catch(e) {
+                // Se não conseguir voltar, vai para index
+                webview.src = webview.src.includes('localhost') ? 
+                    'http://localhost:8000/index.html' : 'index.html';
+            }
+        }
+        
+        // Simula comportamento do WebView Android
+        webview.onload = function() {
+            try {
+                // Injeta JavaScript para simular ambiente Android
+                const doc = webview.contentDocument;
+                if (doc) {
+                    const script = doc.createElement('script');
+                    script.textContent = `
+                        // Simula user agent Android
+                        Object.defineProperty(navigator, 'userAgent', {
+                            get: function() { 
+                                return 'Mozilla/5.0 (Linux; Android 10; SM-G975F) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.120 Mobile Safari/537.36';
+                            }
+                        });
+                        
+                        // Adiciona classe para identificar que está no "app"
+                        document.body.classList.add('android-webview');
+                        
+                        console.log('🤖 Executando no emulador Android WebView');
+                    `;
+                    doc.head.appendChild(script);
+                }
+            } catch(e) {
+                console.log('Cross-origin restriction - normal para servidor local');
+            }
+        };
+        
+        // Inicia com servidor local se disponível, senão offline
+        loadServer();
+        
+        // Fallback para offline se servidor não responder
+        setTimeout(() => {
+            webview.onerror = loadOffline;
+        }, 2000);
+    </script>
+</body>
+</html>

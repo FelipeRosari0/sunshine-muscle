@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="sunshine_primary">#FF6B35</color>
+    <color name="sunshine_primary_dark">#E55A2B</color>
+    <color name="sunshine_accent">#FFA726</color>
+    <color name="sunshine_accent_dark">#FF8F00</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="gray_light">#F5F5F5</color>
+    <color name="gray_dark">#424242</color>
+</resources>

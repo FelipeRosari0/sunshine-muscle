@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Sunshine Muscle</string>
+    <string name="server_url">http://10.0.2.2:8000/index.html</string>
+    <string name="fallback_url">file:///android_asset/index.html</string>
+    <string name="loading">Carregando...</string>
+    <string name="error_loading">Erro ao carregar. Tentando modo offline...</string>
+    <string name="offline_mode">Modo offline ativado</string>
+</resources>

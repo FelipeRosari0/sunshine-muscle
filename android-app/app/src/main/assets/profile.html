@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Perfil — Sunshine Muscle</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="profile.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="container topbar__content">
+        <a class="search-btn" href="index.html" aria-label="Voltar">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M10 19l-7-7 7-7v4h8v6h-8v4z"/></svg>
+        </a>
+        <a class="brand" href="index.html">
+          <img src="assets/logo.svg" class="brand__logo" alt="Logo Sunshine Muscle" />
+        </a>
+        <a class="cart-btn" href="cart.html" aria-label="Carrinho">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zm10 0c-1.1 0-1.99.9-1.99 2S15.9 22 17 22s2-.9 2-2-.9-2-2-2zM7.16 14h9.45c.75 0 1.41-.41 1.75-1.05l3.58-6.49c.37-.67.11-1.52-.57-1.89-.21-.12-.45-.18-.69-.18H6.21L5.27 2H2v2h2l3.6 7.59-1.35 2.44C5.52 14.37 6.26 16 7.66 16h11.34v-2H7.16z" /></svg>
+          <span id="cart-count" class="cart-count">0</span>
+        </a>
+      </div>
+    </header>
+
+    <main class="container">
+      <section class="profile">
+        <div class="profile__header">
+          <div>
+            <h1 class="section-title" id="profile-name">Perfil</h1>
+            <p class="muted" id="profile-email"></p>
+          </div>
+          <div class="profile__actions">
+            <a class="cta" href="login.html" id="login-link">Entrar</a>
+            <button class="btn" id="logout-btn" style="display:none">Sair</button>
+          </div>
+        </div>
+        <h2>Meus pedidos</h2>
+        <div id="orders" class="orders"></div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container footer__content">
+        <p>© Sunshine Muscle — 2025</p>
+        <p class="muted">Treine forte. Treine com estilo.</p>
+      </div>
+    </footer>
+
+    <script src="loader.js"></script>
+    <script src="cart.js"></script>
+    <script src="auth.js"></script>
+    <script src="profile.js"></script>
+  </body>
+  </html>

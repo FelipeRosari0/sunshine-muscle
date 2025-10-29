@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 160" width="600" height="160">
+  <style>
+    .sun { fill: #ffd000; font: 700 44px 'Poppins', Arial, sans-serif; letter-spacing: 2px; }
+    .muscle { fill: #ffffff; font: 800 64px 'Poppins', Arial, sans-serif; letter-spacing: 6px; }
+  </style>
+  <!-- SUNSHINE + star -->
+  <text x="20" y="60" class="sun">SUNSHINE</text>
+  <g transform="translate(370,22) scale(1.2)" fill="#ffd000">
+    <path d="M20 0 L25 14 L40 14 L28 22 L32 36 L20 27 L8 36 L12 22 L0 14 L15 14 Z"/>
+  </g>
+
+  <!-- MUSCL -->
+  <text x="22" y="130" class="muscle">MUSCL</text>
+
+  <!-- Stylized E with lightning -->
+  <g transform="translate(480,95)">
+    <!-- E base -->
+    <rect x="0" y="0" width="12" height="56" fill="#ffffff"/>
+    <rect x="12" y="0" width="46" height="12" fill="#ffffff"/>
+    <rect x="12" y="22" width="40" height="12" fill="#ffffff"/>
+    <rect x="12" y="44" width="46" height="12" fill="#ffffff"/>
+    <!-- Lightning bolt -->
+    <path d="M40 0 L28 26 L44 26 L32 50 L58 50 L48 74 L70 38 L52 38 L64 14 L40 14 Z" fill="#ffd000"/>
+  </g>
+</svg>

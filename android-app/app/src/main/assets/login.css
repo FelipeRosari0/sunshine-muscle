@@ -1,0 +1,7 @@
+.login { padding: 24px 0; max-width: 560px; }
+.login__form { display: grid; gap: 12px; background: var(--panel); border: 1px solid rgba(255,255,255,0.06); border-radius: 12px; padding: 16px; }
+.field { display: grid; gap: 6px; }
+.field input { background: #0e1117; border: 1px solid rgba(255,255,255,0.1); color: var(--text); border-radius: 10px; padding: 10px 12px; }
+.btn { background: #fff; color: #0b0b0f; border: none; border-radius: 10px; padding: 10px 12px; font-weight: 700; cursor: pointer; }
+.btn-primary { background: var(--accent); }
+.btn-primary:hover { background: var(--accent-2); }

@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Checkout • Sunshine Muscle</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="checkout.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="container topbar__content">
+        <a class="brand" href="index.html" aria-label="Voltar para a home">
+          <img src="assets/logo.svg" class="brand__logo" alt="Logo Sunshine Muscle" />
+        </a>
+        <div class="topbar__title">Checkout</div>
+      </div>
+    </header>
+
+    <section class="steps">
+      <div class="container">
+        <div class="steps__track" id="stepsTrack" aria-hidden="true"></div>
+        <div class="steps__items">
+          <div class="step" data-step="1">
+            <div class="step__bullet">1</div>
+            <div class="step__label">Informações<br/>pessoais</div>
+          </div>
+          <div class="step" data-step="2">
+            <div class="step__bullet">2</div>
+            <div class="step__label">Entrega</div>
+          </div>
+          <div class="step" data-step="3">
+            <div class="step__bullet">3</div>
+            <div class="step__label">Pagamento</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <main class="container">
+      <!-- Etapa 1: Informações pessoais -->
+      <form id="formStep1" class="panel" autocomplete="on">
+        <div class="grid">
+          <label class="field">Nome:
+            <input type="text" name="nome" required />
+          </label>
+          <label class="field">TELEFONE:
+            <input type="tel" name="telefone" required />
+          </label>
+          <label class="field">EMAIL:
+            <input type="email" name="email" required />
+          </label>
+          <label class="field">CPF:
+            <input type="text" name="cpf" required />
+          </label>
+          <label class="field">RG:
+            <input type="text" name="rg" />
+          </label>
+          <label class="field">Data nascimento:
+            <input type="date" name="nascimento" />
+          </label>
+        </div>
+        <div class="panel__actions">
+          <button type="submit" class="btn btn-primary">Verificar</button>
+        </div>
+      </form>
+
+      <!-- Etapa 2: Entrega -->
+      <form id="formStep2" class="panel hidden" autocomplete="on">
+        <div class="grid">
+          <label class="field">Endereço:
+            <input type="text" name="endereco" required />
+          </label>
+          <label class="field">Estado:
+            <input type="text" name="estado" required />
+          </label>
+          <label class="field">Bairro:
+            <input type="text" name="bairro" required />
+          </label>
+          <label class="field">CEP:
+            <input type="text" name="cep" required />
+          </label>
+          <label class="field">Cidade:
+            <input type="text" name="cidade" required />
+          </label>
+          <label class="field">Nome do Recebedor:
+            <input type="text" name="recebedor" required />
+          </label>
+        </div>
+        <div class="panel__actions">
+          <button type="button" class="btn" id="backTo1">Voltar</button>
+          <button type="submit" class="btn btn-primary">Verificar</button>
+        </div>
+      </form>
+
+      <!-- Etapa 3: Pagamento -->
+      <section id="formStep3" class="panel hidden">
+        <div class="paybox">
+          <div class="paybox__tabs" role="tablist">
+            <button class="paytab active" data-tab="card" role="tab" aria-selected="true">CARTÃO</button>
+            <button class="paytab" data-tab="pix" role="tab">PIX</button>
+          </div>
+
+          <!-- CARTÃO -->
+          <form id="payCard" class="payview" autocomplete="on">
+            <div class="grid grid-2">
+              <label class="field">NOME DO TITULAR DO CARTÃO:
+                <input type="text" name="titular" required />
+              </label>
+              <label class="field">CVV
+                <input type="password" inputmode="numeric" name="cvv" required />
+              </label>
+              <label class="field">NÚMERO DO CARTÃO:
+                <input type="text" inputmode="numeric" name="numero" required />
+              </label>
+              <label class="field">MM/AA
+                <input type="text" name="validade" placeholder="MM/AA" required />
+              </label>
+              <label class="field">CPF DO TITULAR:
+                <input type="text" name="cpfTitular" required />
+              </label>
+              <label class="field">PARCELAS:
+                <select name="parcelas" required>
+                  <option value="1">1x</option>
+                  <option value="2">2x</option>
+                  <option value="3">3x</option>
+                  <option value="6">6x</option>
+                  <option value="12">12x</option>
+                </select>
+              </label>
+            </div>
+            <div class="banklogos">
+              <span class="logo">PayPal</span>
+              <span class="logo">MasterCard</span>
+              <span class="logo">PicPay</span>
+              <span class="logo">Itaú</span>
+            </div>
+            <div class="checks">
+              <label><input type="checkbox" name="debito"/> DÉBITO</label>
+              <label><input type="checkbox" name="credito"/> CRÉDITO</label>
+            </div>
+            <p class="muted legal">Ao informar meus dados, eu concordo com a <a href="#">política de privacidade</a> e com os <a href="#">termos de uso</a>.</p>
+            <div class="checks">
+              <label><input type="checkbox" id="agreeTerms"/> Eu estou de acordo com a política de uso e termos de uso</label>
+            </div>
++            <p id="cardInfo" class="muted" style="margin:8px 0 0"></p>
+             <div class="panel__actions">
+               <button type="button" class="btn" id="backTo2">Voltar</button>
+               <button type="submit" class="btn btn-primary btn-lg" id="finalizeCard" disabled>FINALIZAR</button>
+             </div>
+           </form>
+
+           <!-- PIX -->
+           <div id="payPix" class="payview hidden">
+             <div class="pixbox">
+               <div class="qrcode">
+                 <img id="pixQrImg" src="assets/pix-qr.png" alt="QR Code Pix" />
+               </div>
+               <p class="muted">Código válido por 20 minutos — copie e cole o código</p>
+               <input type="text" id="pixCode" class="code" readonly value="00020126490014br.gov.bcb.pix0127sunshine-muscle-demo..." />
+               <div class="panel__actions">
+                 <label for="pixUpload" class="btn">Carregar QR</label>
+                 <input type="file" id="pixUpload" accept="image/*" hidden />
+                 <button type="button" class="btn" id="backPix">Voltar</button>
++                <button type="button" class="btn btn-primary btn-lg" id="confirmPix">Confirmar pagamento</button>
++                <button type="button" class="btn" id="copyPix">Copiar</button>
+               </div>
+             </div>
+           </div>
+         </div>
+       </section>
+     </main>
+
+     <footer class="footer">
+       <div class="container footer__content">
+         <p>© Sunshine Muscle — 2025</p>
+         <p class="muted">Treine forte. Treine com estilo.</p>
+       </div>
+     </footer>
++
++    <div id="toast" class="toast" aria-live="polite" role="status"></div>
++    <!-- Overlay de sucesso -->
++    <div id="paySuccess" class="pay-success-overlay" aria-modal="true" role="dialog" hidden>
++      <div class="successbox">
++        <svg class="check" viewBox="0 0 52 52" aria-hidden="true">
++          <circle class="ring" cx="26" cy="26" r="24" />
++          <path class="mark" d="M14 27l7 7 17-17" />
++        </svg>
++        <h2>Pagamento concluído!</h2>
++        <p class="muted">Pedido gerado: <span id="orderId"></span></p>
++        <div class="panel__actions" style="justify-content:center">
++          <button id="goOrders" class="btn btn-primary btn-lg">Ver meus pedidos</button>
++        </div>
++      </div>
++    </div>
+
+     <script src="loader.js"></script>
+     <script src="cart.js"></script>
+     <script src="auth.js"></script>
+     <script src="checkout.js"></script>
+     <script src="checkout_masks.js"></script>
+   </body>
+ </html>

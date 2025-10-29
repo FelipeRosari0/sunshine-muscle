@@ -1,0 +1,46 @@
+############################
+# General
+############################
+.DS_Store
+Thumbs.db
+*.log
+*.tmp
+.env
+.vscode/
+*.iml
+
+############################
+# Python
+############################
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.sqlite3
+db/sunshine.sqlite3
+
+############################
+# Node (just in case)
+############################
+node_modules/
+dist/
+
+############################
+# Android / Gradle
+############################
+.gradle/
+.idea/
+local.properties
+build/
+android-app/.gradle/
+android-app/.idea/
+android-app/local.properties
+android-app/build/
+android-app/app/build/
+android-app/app/release/
+
+############################
+# OS junk
+############################
+ehthumbs.db
+Desktop.ini

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Produto — Sunshine Muscle</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="product.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="container topbar__content">
+        <a class="search-btn" href="index.html" aria-label="Voltar">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M10 19l-7-7 7-7v4h8v6h-8v4z"/></svg>
+        </a>
+        <a class="brand" href="index.html" aria-label="Sunshine Muscle – Página inicial">
+          <img src="assets/logo.svg" class="brand__logo" alt="Logo Sunshine Muscle" />
+        </a>
+        <nav class="nav">
+          <a href="index.html#view-suplementos">Suplementos</a>
+          <a href="index.html#view-produtos">Produtos</a>
+        </nav>
+        <a class="cart-btn" href="cart.html" aria-label="Carrinho">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zm10 0c-1.1 0-1.99.9-1.99 2S15.9 22 17 22s2-.9 2-2-.9-2-2-2zM7.16 14h9.45c.75 0 1.41-.41 1.75-1.05l3.58-6.49c.37-.67.11-1.52-.57-1.89-.21-.12-.45-.18-.69-.18H6.21L5.27 2H2v2h2l3.6 7.59-1.35 2.44C5.52 14.37 6.26 16 7.66 16h11.34v-2H7.16z" /></svg>
+          <span id="cart-count" class="cart-count">0</span>
+        </a>
+      </div>
+    </header>
+
+    <main class="container">
+      <section class="product">
+        <div class="product__grid">
+          <div class="product__media">
+            <img id="product-img" src="assets/placeholder.svg" alt="Produto" />
+            <span class="price-badge" id="price-badge">R$ 0,00</span>
+          </div>
+          <div class="product__info">
+            <h1 id="product-name">Produto</h1>
+            <p class="product__price" id="product-price">R$ 0,00</p>
+            <p class="muted">Descrição breve do produto. Ajuste conforme seus dados reais.</p>
+            <div class="product__buy">
+              <label>Quantidade</label>
+              <div class="qty">
+                <button id="dec">-</button>
+                <input id="qty" type="number" min="1" value="1" />
+                <button id="inc">+</button>
+              </div>
+              <div class="product__actions">
+                <button id="add-cart" class="btn-buy">Adicionar ao carrinho</button>
+                <a id="buy-now" class="cta" href="checkout.html">Comprar agora</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container footer__content">
+        <p>© Sunshine Muscle — 2025</p>
+        <p class="muted">Treine forte. Treine com estilo.</p>
+      </div>
+    </footer>
+
+    <div id="toast" class="toast" role="status" aria-live="polite" aria-atomic="true"></div>
+
+    <script src="loader.js"></script>
+    <script src="cart.js"></script>
+    <script src="data.js"></script>
+    <script src="product.js"></script>
+  </body>
+  </html>
