@@ -5,9 +5,15 @@ import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import android.webkit.WebChromeClient
+import android.webkit.WebResourceRequest
+import android.webkit.WebResourceError
+import android.webkit.WebResourceResponse
 import android.webkit.WebSettings
 import android.webkit.WebView
 import android.webkit.WebViewClient
+import android.os.Build
+import java.net.HttpURLConnection
+import java.net.URL
 import androidx.activity.ComponentActivity
 import androidx.activity.OnBackPressedCallback
 
@@ -51,11 +57,37 @@ class MainActivity : ComponentActivity() {
         }
 
         webView.webViewClient = object : WebViewClient() {
+            override fun onPageFinished(view: WebView?, url: String?) {
+                // Garante esconder a barra quando terminar de carregar
+                progressBar.visibility = View.GONE
+            }
+
+            // API >= 23: tratar erro de requisição principal (tela preta quando servidor offline)
+            override fun onReceivedError(view: WebView, request: WebResourceRequest, error: WebResourceError) {
+                if (request.isForMainFrame) {
+                    if (APP_URL != FALLBACK_URL) {
+                        APP_URL = FALLBACK_URL
+                        view.loadUrl(FALLBACK_URL)
+                    }
+                }
+            }
+
+            override fun onReceivedHttpError(view: WebView, request: WebResourceRequest, errorResponse: WebResourceResponse) {
+                if (request.isForMainFrame) {
+                    if (APP_URL != FALLBACK_URL) {
+                        APP_URL = FALLBACK_URL
+                        view.loadUrl(FALLBACK_URL)
+                    }
+                }
+            }
+
+            // Compatibilidade com APIs antigas
             override fun onReceivedError(view: WebView?, errorCode: Int, description: String?, failingUrl: String?) {
-                // Se falhar ao carregar do servidor, tenta assets offline
-                if (failingUrl == SERVER_URL) {
-                    APP_URL = FALLBACK_URL
-                    view?.loadUrl(FALLBACK_URL)
+                if (failingUrl == SERVER_URL && view != null) {
+                    if (APP_URL != FALLBACK_URL) {
+                        APP_URL = FALLBACK_URL
+                        view.loadUrl(FALLBACK_URL)
+                    }
                 }
             }
 
@@ -81,7 +113,17 @@ class MainActivity : ComponentActivity() {
             }
         }
 
-        webView.loadUrl(APP_URL)
+        // Mostrar progresso inicialmente
+        progressBar.visibility = View.VISIBLE
+
+        // Detecta rapidamente se o servidor está acessível; se não, inicia em offline
+        Thread {
+            val reachable = isServerReachable(SERVER_URL, 1500)
+            runOnUiThread {
+                APP_URL = if (reachable) SERVER_URL else FALLBACK_URL
+                webView.loadUrl(APP_URL)
+            }
+        }.start()
 
         onBackPressedDispatcher.addCallback(this, object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
@@ -93,5 +135,23 @@ class MainActivity : ComponentActivity() {
     override fun onDestroy() {
         webView.destroy()
         super.onDestroy()
+    }
+
+    private fun isServerReachable(url: String, timeoutMs: Int = 1500): Boolean {
+        return try {
+            val u = URL(url)
+            val conn = (u.openConnection() as HttpURLConnection).apply {
+                requestMethod = "HEAD"
+                connectTimeout = timeoutMs
+                readTimeout = timeoutMs
+                instanceFollowRedirects = false
+            }
+            conn.connect()
+            val code = conn.responseCode
+            conn.disconnect()
+            code in 200..399
+        } catch (_: Exception) {
+            false
+        }
     }
 }

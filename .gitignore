@@ -38,6 +38,10 @@ android-app/local.properties
 android-app/build/
 android-app/app/build/
 android-app/app/release/
+android-app/.gradle-tmp/
+android-app/.jdk17/
+android-app/jdk17.zip
+android-app/gradle-*-bin.zip
 
 ############################
 # OS junk
